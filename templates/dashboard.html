@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Hello {{ username }}! 👋</h2>
+<p>Welcome to your dashboard.</p>
+
+<h3>Encrypt a File (AES)</h3>
+<form action="/encrypt_aes" method="POST" enctype="multipart/form-data">
+  <label>Choose a file to encrypt:</label><br>
+  <input type="file" name="file"><br><br>
+  
+  <label>Select AES key size:</label><br>
+  <select name="key_size">
+    <option value="128">128-bit</option>
+    <option value="192">192-bit</option>
+    <option value="256">256-bit</option>
+  </select><br><br>
+
+  <label>Select AES block mode:</label><br>
+  <select name="mode">
+    <option value="CBC">CBC</option>
+    <option value="CFB">CFB</option>
+  </select><br><br>
+
+  <button type="submit">Encrypt File</button>
+</form>
+
+<h3>Decrypt a File (AES)</h3>
+<form action="/decrypt_aes" method="POST" enctype="multipart/form-data">
+  <label>Choose a file to decrypt:</label><br>
+  <input type="file" name="file"><br><br>
+  <button type="submit">Decrypt File</button>
+</form>
+
+<h3>Encrypt a File (3DES)</h3>
+<form action="/encrypt_3des" method="POST" enctype="multipart/form-data">
+  <label>Choose file:</label><br>
+  <input type="file" name="file"><br><br>
+  <button type="submit">Encrypt File (3DES)</button>
+</form>
+
+<h3>Decrypt a File (3DES)</h3>
+<form action="/decrypt_3des" method="POST" enctype="multipart/form-data">
+  <label>Choose encrypted 3DES file:</label><br>
+  <input type="file" name="file"><br><br>
+  <button type="submit">Decrypt File (3DES)</button>
+</form>
+
+<h3>Generate RSA Keys</h3>
+<form action="/generate_rsa_keys" method="POST">
+  <button type="submit">Generate Keys</button>
+</form>
+
+<h3>Encrypt File with Public Key (RSA)</h3>
+<form action="/encrypt_rsa" method="POST" enctype="multipart/form-data">
+  <label>Upload public key (.pem):</label><br>
+  <input type="file" name="pub_key"><br>
+  <label>Upload file to encrypt:</label><br>
+  <input type="file" name="file"><br><br>
+  <button type="submit">Encrypt with RSA</button>
+</form>
+
+<h3>Decrypt File with Private Key (RSA)</h3>
+<form action="/decrypt_rsa" method="POST" enctype="multipart/form-data">
+  <label>Upload private key (.pem):</label><br>
+  <input type="file" name="priv_key"><br>
+  <label>Upload encrypted file:</label><br>
+  <input type="file" name="file"><br><br>
+  <button type="submit">Decrypt with RSA</button>
+</form>
+
+<h3>Hash a File (SHA-2 or SHA-3)</h3>
+<form action="/hash_file" method="POST" enctype="multipart/form-data">
+  <label>Choose a file to hash:</label><br>
+  <input type="file" name="file"><br><br>
+
+  <label>Hash Algorithm:</label><br>
+  <select name="algo">
+    <option value="sha256">SHA-256</option>
+    <option value="sha3_256">SHA3-256</option>
+  </select><br><br>
+
+  <button type="submit">Generate Hash</button>
+</form>
+
+
+{% endblock %}
